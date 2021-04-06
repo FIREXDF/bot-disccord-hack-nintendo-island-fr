@@ -9,12 +9,13 @@ const client = new Discord.Client();
  * received from Discord
  */
 client.on('ready', () => {
-  console.log('I am ready!');
+  console.log('Je suis pret');
 });
 
 client.on('message', message => {
   // Ignore messages that aren't from a guild
   if (!message.guild) return;
+  
 
   // If the message content starts with "!kick"
   if (message.content.startsWith('!kick')) {
@@ -36,23 +37,23 @@ client.on('message', message => {
           .kick('Optional reason that will display in the audit logs')
           .then(() => {
             // We let the message author know we were able to kick the person
-            message.reply(`Successfully kicked ${user.tag}`);
+            message.reply(` ${user.tag} a été bien kick`);
           })
           .catch(err => {
             // An error happened
             // This is generally due to the bot not being able to kick the member,
             // either due to missing permissions or role hierarchy
-            message.reply('I was unable to kick the member');
+            message.reply('Je ne peux pas kick cette personne');
             // Log the error
             console.error(err);
           });
       } else {
         // The mentioned user isn't in this guild
-        message.reply("That user isn't in this guild!");
+        message.reply("Cet utilisateur n'est pas dans cette guilde!");
       }
       // Otherwise, if no user was mentioned
     } else {
-      message.reply("You didn't mention the user to kick!");
+      message.reply("Tu as mentioné personne !!");
     }
   }
 });
